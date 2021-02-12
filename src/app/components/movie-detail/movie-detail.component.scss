@@ -1,0 +1,34 @@
+#card-information {
+  text-align: center;
+}
+#main-container-top {
+  margin-top: 2rem;
+}
+#container-top-content {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.497);
+}
+
+@media (min-width: 768px) {
+  #card-information {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: initial;
+    padding: 0 2rem;
+  }
+  #genere-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  .card-image-poster {
+    max-width: 300px;
+  }
+}
+@media (min-width: 992px) {
+  #container-top-content {
+    padding: 2rem;
+  }
+}
