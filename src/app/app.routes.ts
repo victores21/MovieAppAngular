@@ -8,7 +8,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 //Routing Variable
 
 const APP_ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
 ];
 
