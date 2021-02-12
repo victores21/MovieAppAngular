@@ -6,6 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 
 //Routing Variable
 
-const APP_ROUTES: Routes = [{ path: 'home', component = HomeComponent }];
+const APP_ROUTES: Routes = [{ path: 'home', component: HomeComponent }];
 
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
