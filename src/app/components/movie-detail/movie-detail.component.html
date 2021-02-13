@@ -3,9 +3,7 @@
     class="container"
     id="container-top-content"
     style="
-      background-image: url('https://image.tmdb.org/t/p/original/{{
-      movieDetail.backdrop_path
-    }}');
+      background-image: url('https://image.tmdb.org/t/p/original/{{movieDetail.backdrop_path}}');
       background-size: cover;
     "
   >
@@ -24,11 +22,11 @@
             <span class="px-1" *ngFor="let genre of movieDetail.genres">{{
               genre.name
             }}</span>
-            |
+            <span *ngIf="movieDetail.runtime > 0">|</span>
           </p>
           <p class="ps-2">
-            {{ movieDetail.runtime }} minutes |
-            <span
+            <span *ngIf="movieDetail.runtime > 0">{{ movieDetail.runtime }} minutes |</span>
+            <span *ngIf="movieDetail.vote_average > 0"
               ><i class="fas fa-star text-warning"></i>
               {{ movieDetail.vote_average }}</span
             >
@@ -47,51 +45,42 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-md-9 mt-3">
-        <p>Companies</p>
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2">
-            <div class="card bg-transparent card-block">
-              <img
-                src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-                alt=""
-                class="card-image-poster"
-              />
-              <div class="card-footer">
-                <p>Warner Bros</p>
+      <div class="container col-sm-12 col-md-9">
+        <h2 class="mt-5">Recommendation</h2>
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+          <div
+            *ngFor="let movie of similarMovies"
+            class="col-sm-6 col-md-3 col-lg-3 col-xl-2"
+          >
+            <a routerLink="/movie/{{ movie.id }}">
+              <div class="card card-block">
+                <img
+                  src="https://image.tmdb.org/t/p/w500/{{
+                    movie.backdrop_path
+                  }}"
+                  alt=""
+                  class="card-image-poster"
+                />
+                <div class="card-footer">
+                  <p>{{ movie.original_title }}</p>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 my-2">
-            <div class="card bg-transparent card-block">
-              <img
-                src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-                alt=""
-                class="card-image-poster"
-              />
-              <div class="card-footer">
-                <p>Footer</p>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-3 mt-3">
+      <div class="container col-sm-12 col-md-3 mt-5 ps-3">
         <div class="status">
           <p class="fw-bold mb-0">Status</p>
-          <p>Released</p>
-        </div>
-        <div class="original-language">
-          <p class="fw-bold mb-0">Original Language</p>
-          <p>English</p>
+          <p>{{ movieDetail.status }}</p>
         </div>
         <div class="budget">
           <p class="fw-bold mb-0">Budget</p>
-          <p>170,000,000</p>
+          <p>{{ movieDetail.budget | currency }}</p>
         </div>
         <div class="budget">
           <p class="fw-bold mb-0">Revenue</p>
-          <p>170,000,000</p>
+          <p>{{ movieDetail.revenue | currency }}</p>
         </div>
       </div>
     </div>
