@@ -8,6 +8,7 @@ import { ApiService } from '../../services/api.service';
 export class HomeComponent implements OnInit {
   popularMovies: any[] = [];
   topRatedMovies: any[] = [];
+  upcomingMovies: any[] = [];
   constructor(public api: ApiService) {}
 
   ngOnInit(): void {
@@ -25,6 +26,14 @@ export class HomeComponent implements OnInit {
       )
       .subscribe((data: any) => {
         this.topRatedMovies = data.results;
+      });
+
+    this.api
+      .getListOfMovies(
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=1'
+      )
+      .subscribe((data: any) => {
+        this.upcomingMovies = data.results;
       });
   }
 }
