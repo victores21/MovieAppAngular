@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  api_url: string = 'https://jsonplaceholder.typicode.com/todos/';
   constructor(private http: HttpClient) {}
 
   getListOfMovies(url: string) {

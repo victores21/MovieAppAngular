@@ -1,226 +1,38 @@
 <div class="container pt-5">
   <h2 class="mt-5">Popular Movies</h2>
   <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
+    <div
+      *ngFor="let movie of popularMovies"
+      class="col-sm-6 col-md-3 col-lg-3 col-xl-2"
+    >
       <div class="card card-block">
         <img
-          src="https://image.tmdb.org/t/p/w500/srYya1ZlI97Au4jUYAktDe3avyA.jpg"
+          src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}"
           alt=""
           class="card-image-poster"
         />
         <div class="card-footer">
-          <p>Godzilla: King of the Monsters</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/54yOImQgj8i85u9hxxnaIQBRUuo.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/srYya1ZlI97Au4jUYAktDe3avyA.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
+          <p>{{ movie.original_title }}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="container">
-  <h2 class="mt-5">Popular Movies</h2>
+  <h2 class="mt-5">Top Rated Movies</h2>
   <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
+    <div
+      *ngFor="let movie of topRatedMovies"
+      class="col-sm-6 col-md-3 col-lg-3 col-xl-2"
+    >
       <div class="card card-block">
         <img
-          src="https://image.tmdb.org/t/p/w500/srYya1ZlI97Au4jUYAktDe3avyA.jpg"
+          src="https://image.tmdb.org/t/p/w500/{{ movie.backdrop_path }}"
           alt=""
           class="card-image-poster"
         />
         <div class="card-footer">
-          <span>
-            Birds of Prey (and the Fantabulous Emancipation of One Harley Quinn)
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/54yOImQgj8i85u9hxxnaIQBRUuo.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/srYya1ZlI97Au4jUYAktDe3avyA.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/lOSdUkGQmbAl5JQ3QoHqBZUbZhC.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
-      <div class="card card-block">
-        <img
-          src="https://image.tmdb.org/t/p/w500/fRrpOILyXuWaWLmqF7kXeMVwITQ.jpg"
-          alt=""
-          class="card-image-poster"
-        />
-        <div class="card-footer">
-          <p>Footer</p>
+          <p>{{ movie.original_title }}</p>
         </div>
       </div>
     </div>
