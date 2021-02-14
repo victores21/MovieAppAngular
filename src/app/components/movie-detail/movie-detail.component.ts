@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-movie-detail',
@@ -25,9 +27,12 @@ export class MovieDetailComponent implements OnInit {
 
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/movie/' +
+          environment.API_URL +
+            'movie/' +
             this.movieId +
-            '?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US'
+            '?api_key=' +
+            environment.API_KEY +
+            '&language=en-US'
         )
         .subscribe((data: any) => {
           this.movieDetail = data;
@@ -36,9 +41,12 @@ export class MovieDetailComponent implements OnInit {
 
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/movie/' +
+          environment.API_URL +
+            'movie/' +
             this.movieId +
-            '/similar?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=1'
+            '/similar?api_key=' +
+            environment.API_KEY +
+            '&language=en-US&page=1'
         )
         .subscribe((data: any) => {
           this.similarMovies = data.results;
@@ -46,9 +54,12 @@ export class MovieDetailComponent implements OnInit {
 
       this.api
         .getListOfMovies(
-          ' https://api.themoviedb.org/3/movie/' +
+          environment.API_URL +
+            'movie/' +
             this.movieId +
-            '/credits?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US'
+            '/credits?api_key=' +
+            environment.API_KEY +
+            '&language=en-US'
         )
         .subscribe((data: any) => {
           this.castList = data.cast;
