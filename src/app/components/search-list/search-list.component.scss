@@ -22,6 +22,7 @@
   pointer-events: none;
   color: #aaa;
 }
+
 #card-information {
   text-align: center;
 }
@@ -156,7 +157,36 @@ a {
   height: 100%;
   object-fit: cover;
 }
+//PAGINATION
+ngb-pagination ::ng-deep a {
+  color: black !important;
+  outline: none;
+}
 
+ngb-pagination ::ng-deep .page-item .page-link {
+  border-color: none;
+  background-color: transparent;
+  color: #fff !important;
+  outline: none;
+}
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: none;
+  background-color: #fff;
+  color: #000 !important;
+  outline: none;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+  outline: none;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+  outline: none;
+}
+//End Pagination
 @media (min-width: 768px) {
   #card-information {
     display: flex;
