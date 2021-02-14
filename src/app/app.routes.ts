@@ -12,6 +12,8 @@ const APP_ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'movie/:id', component: MovieDetailComponent },
   { path: 'search', component: SearchListComponent },
+  { path: 'search/:query', component: SearchListComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
