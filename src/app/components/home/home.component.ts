@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
     // this.spinner.show();
     this.api
       .getListOfMovies(
-        'https://api.themoviedb.org/3/movie/popular?api_key=' +
+        environment.API_URL +
+          'movie/popular?api_key=' +
           environment.API_KEY +
           '&language=en-US&page=1'
       )
@@ -49,7 +50,8 @@ export class HomeComponent implements OnInit {
 
     this.api
       .getListOfMovies(
-        'https://api.themoviedb.org/3/movie/top_rated?api_key=' +
+        environment.API_URL +
+          'movie/top_rated?api_key=' +
           environment.API_KEY +
           '&language=en-US&page=1'
       )
@@ -60,7 +62,8 @@ export class HomeComponent implements OnInit {
 
     this.api
       .getListOfMovies(
-        'https://api.themoviedb.org/3/movie/upcoming?api_key=' +
+        environment.API_URL +
+          'movie/upcoming?api_key=' +
           environment.API_KEY +
           '&language=en-US&page=1'
       )
