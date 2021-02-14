@@ -1,6 +1,6 @@
 <div class="container-fluid pt-5" id="main-container-top">
   <div
-    class="container"
+    class="container-fluid"
     id="container-top-content"
     style="
       background-image: url('https://image.tmdb.org/t/p/original/{{
@@ -59,7 +59,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-12 col-md-9">
         <div *ngIf="similarMovies.length > 0">
@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <div class="container col-sm-12 col-md-3 mt-5 ps-3">
+      <div class="container-fluid col-sm-12 col-md-3 mt-5 ps-3">
         <div class="status">
           <p class="fw-bold mb-0">Status</p>
           <p>{{ movieDetail.status }}</p>
