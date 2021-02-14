@@ -6,10 +6,14 @@
       id="container-top-content"
       [ngStyle]="{
         'background-image':
-          ' url(' +
-          'https://image.tmdb.org/t/p/original/' +
-          movieDetail.backdrop_path +
-          ')',
+          movieDetail.backdrop_path != null
+            ? ' url(' +
+              'https://image.tmdb.org/t/p/original/' +
+              movieDetail.backdrop_path +
+              ')'
+            : ' url(' +
+              'https://preview.redd.it/faaz36v3pon41.png?blur=40&format=pjpg&auto=webp&s=d9f04ba33804b61be24a29c9dd21c25507984479' +
+              ')',
         'background-size': 'cover'
       }"
     >
@@ -75,6 +79,7 @@
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-sm-12 col-md-4 col-lg-3">
           <img
+            loading="lazy"
             src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
             alt=""
             class="card-image-poster w-100 p-3"
