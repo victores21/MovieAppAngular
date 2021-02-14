@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 // import {NgbdPaginationAdvancedModule} from './app/pagination-advanced.module';
 
@@ -15,14 +16,26 @@ export class SearchListComponent implements OnInit {
   moviesList: any[] = [];
   query: string = '';
   page = 1;
+  searchValue: any = '';
 
-  constructor(public api: ApiService) {}
+  constructor(public api: ApiService, private activatedRoute: ActivatedRoute) {}
+
+  checkIfMoviesToShow(moviesList: any[]) {
+    if (moviesList.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   searchMovies(query: string) {
     if (query.length == 0) {
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/search/movie?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=1&include_adult=false&query=a'
+          environment.API_URL +
+            'search/movie?api_key=' +
+            environment.API_KEY +
+            '&language=en-US&page=1&include_adult=false&query=a'
         )
         .subscribe((data: any) => {
           this.searchInfo = data;
@@ -30,11 +43,15 @@ export class SearchListComponent implements OnInit {
           console.log(this.searchInfo);
           this.moviesList = data.results;
           this.page = 1;
+          console.log(query);
         });
     } else {
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/search/movie?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=1&include_adult=false&query=' +
+          environment.API_URL +
+            'search/movie?api_key=' +
+            environment.API_KEY +
+            '&language=en-US&page=1&include_adult=false&query=' +
             encodeURI(query)
         )
         .subscribe((data: any) => {
@@ -51,7 +68,10 @@ export class SearchListComponent implements OnInit {
     if (query.length == 0) {
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/search/movie?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=' +
+          environment.API_URL +
+            'search/movie?api_key=' +
+            environment.API_KEY +
+            '&language=en-US&page=' +
             paginationPage +
             '&include_adult=false&query=a'
         )
@@ -63,7 +83,10 @@ export class SearchListComponent implements OnInit {
     } else {
       this.api
         .getListOfMovies(
-          'https://api.themoviedb.org/3/search/movie?api_key=27337898bc0c9b2c97bc056520acb400&language=en-US&page=' +
+          environment.API_URL +
+            'search/movie?api_key=' +
+            environment.API_KEY +
+            '&language=en-US&page=' +
             paginationPage +
             '&include_adult=false&query=' +
             encodeURI(query)
@@ -75,10 +98,12 @@ export class SearchListComponent implements OnInit {
         });
     }
   }
-  consoleLog(item: any) {
-    console.log('ITEM', item);
-  }
+
   ngOnInit(): void {
-    this.searchMovies(this.query);
+    // this.searchMovies(this.query);
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      this.searchValue = params.get('query');
+      this.searchMovies(decodeURI(this.searchValue));
+    });
   }
 }
