@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 @Component({
   selector: 'app-home',
@@ -9,7 +10,11 @@ export class HomeComponent implements OnInit {
   popularMovies: any[] = [];
   topRatedMovies: any[] = [];
   upcomingMovies: any[] = [];
-  constructor(public api: ApiService) {}
+  constructor(public api: ApiService, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((data) => {
+      console.log(data);
+    });
+  }
 
   ngOnInit(): void {
     this.api
