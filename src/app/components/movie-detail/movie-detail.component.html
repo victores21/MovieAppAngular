@@ -1,144 +1,174 @@
-<div class="container-fluid pt-5" id="main-container-top">
-  <div
-    class="container-fluid"
-    id="container-top-content"
-    style="
-      background-image: url('https://image.tmdb.org/t/p/original/{{
-      movieDetail.backdrop_path
-    }}');
-      background-size: cover;
-    "
-  >
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-sm-12 col-md-4 col-lg-3">
-        <img
-          *ngIf="movieDetail.poster_path != null"
-          src="https://image.tmdb.org/t/p/w500/{{ movieDetail.poster_path }}"
-          alt=""
-          class="card-image-poster w-100 p-3"
-        />
-        <img
-          *ngIf="movieDetail.poster_path == null"
-          src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
-          alt=""
-          class="card-image-poster w-100 p-3"
-        />
-      </div>
-      <div class="col-sm-12 col-md-8" id="card-information">
-        <h1 class="mb-2 mt-2">{{ movieDetail.original_title }}</h1>
-        <div id="genere-time">
-          <p>
-            <span class="px-1" *ngFor="let genre of movieDetail.genres">{{
-              genre.name
-            }}</span>
-            <span *ngIf="movieDetail.runtime > 0">|</span>
-          </p>
-          <p class="ps-2">
-            <span *ngIf="movieDetail.runtime > 0"
-              >{{ movieDetail.runtime }} minutes
-            </span>
-            <span> | </span>
-            <span *ngIf="movieDetail.vote_average > 0"
-              ><i class="fas fa-star text-warning"></i>
-              {{ movieDetail.vote_average }}</span
-            >
-          </p>
+<div class="component-container">
+  <div class="container-fluid pt-5" id="main-container-top">
+    <div
+      *ngIf="!isError && isMovieLoaded"
+      class="container-fluid"
+      id="container-top-content"
+      [ngStyle]="{
+        'background-image':
+          ' url(' +
+          'https://image.tmdb.org/t/p/original/' +
+          movieDetail.backdrop_path +
+          ')',
+        'background-size': 'cover'
+      }"
+    >
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-4 col-lg-3">
+          <img
+            *ngIf="movieDetail.poster_path != null"
+            src="https://image.tmdb.org/t/p/w500/{{ movieDetail.poster_path }}"
+            alt=""
+            class="card-image-poster w-100 p-3"
+          />
+          <img
+            *ngIf="movieDetail.poster_path == null"
+            src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
+            alt=""
+            class="card-image-poster w-100 p-3"
+          />
         </div>
-        <div class="row">
-          <p>
-            <i
-              ><b>{{ movieDetail.tagline }}</b></i
-            >
-          </p>
-          <p>Overview</p>
-          <p>
-            {{ movieDetail.overview }}
-          </p>
+        <div class="col-sm-12 col-md-8" id="card-information">
+          <h1 class="mb-2 mt-2">{{ movieDetail.original_title }}</h1>
+          <div id="genere-time">
+            <p>
+              <span class="px-1" *ngFor="let genre of movieDetail.genres">{{
+                genre.name
+              }}</span>
+              <span *ngIf="movieDetail.runtime > 0">|</span>
+            </p>
+            <p class="ps-2">
+              <span *ngIf="movieDetail.runtime > 0"
+                >{{ movieDetail.runtime }} minutes
+              </span>
+              <span> | </span>
+              <span *ngIf="movieDetail.vote_average > 0"
+                ><i class="fas fa-star text-warning"></i>
+                {{ movieDetail.vote_average }}</span
+              >
+            </p>
+          </div>
+          <div class="row">
+            <p>
+              <i
+                ><b>{{ movieDetail.tagline }}</b></i
+              >
+            </p>
+            <p>Overview</p>
+            <p>
+              {{ movieDetail.overview }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-12 col-md-9">
-        <div *ngIf="similarMovies.length > 0">
-          <h2 class="mt-5">Recommendation</h2>
-          <div
-            class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2"
-          >
+    <div
+      *ngIf="isError && isMovieLoaded"
+      class="container-fluid"
+      id="container-top-content"
+      style="
+        background-image: url('https://www.purplesyntax.com/admin/uploads/Enhance-SEO-With-a-Custom-404-Page.png');
+        background-size: cover;
+      "
+    >
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-sm-12 col-md-4 col-lg-3">
+          <img
+            src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
+            alt=""
+            class="card-image-poster w-100 p-3"
+          />
+        </div>
+        <div class="col-sm-12 col-md-8" id="card-information">
+          <h1 class="mb-2 mt-2">Movie Does not exist</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="isMovieLoaded">
+      <div class="row">
+        <div class="col-sm-12 col-md-9">
+          <div *ngIf="similarMovies.length > 0">
+            <h2 class="mt-5">Recommendation</h2>
             <div
-              *ngFor="let movie of similarMovies"
-              class="col-sm-6 col-md-3 col-lg-3 col-xl-3"
+              class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2"
             >
-              <a routerLink="/movie/{{ movie.id }}">
+              <div
+                *ngFor="let movie of similarMovies"
+                class="col-sm-6 col-md-3 col-lg-3 col-xl-3"
+              >
+                <a routerLink="/movie/{{ movie.id }}">
+                  <div class="card card-block">
+                    <img
+                      *ngIf="movie.backdrop_path != null"
+                      src="https://image.tmdb.org/t/p/w500/{{
+                        movie.backdrop_path
+                      }}"
+                      alt=""
+                      class="card-image-poster"
+                    />
+                    <img
+                      *ngIf="movie.backdrop_path == null"
+                      src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
+                      alt=""
+                      class="card-image-poster"
+                    />
+                    <div class="card-footer">
+                      <p>{{ movie.original_title }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="castList.length > 0">
+            <h2 class="mt-5">Cast</h2>
+            <div
+              class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2"
+            >
+              <div
+                *ngFor="let cast of castList"
+                class="col-sm-6 col-md-3 col-lg-3 col-xl-3"
+              >
                 <div class="card card-block">
                   <img
-                    *ngIf="movie.backdrop_path != null"
+                    *ngIf="cast.profile_path != null"
                     src="https://image.tmdb.org/t/p/w500/{{
-                      movie.backdrop_path
+                      cast.profile_path
                     }}"
                     alt=""
                     class="card-image-poster"
                   />
                   <img
-                    *ngIf="movie.backdrop_path == null"
+                    *ngIf="cast.profile_path == null"
                     src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
                     alt=""
                     class="card-image-poster"
                   />
-                  <div class="card-footer">
-                    <p>{{ movie.original_title }}</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="castList.length > 0">
-          <h2 class="mt-5">Cast</h2>
-          <div
-            class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2"
-          >
-            <div
-              *ngFor="let cast of castList"
-              class="col-sm-6 col-md-3 col-lg-3 col-xl-3"
-            >
-              <div class="card card-block">
-                <img
-                  *ngIf="cast.profile_path != null"
-                  src="https://image.tmdb.org/t/p/w500/{{ cast.profile_path }}"
-                  alt=""
-                  class="card-image-poster"
-                />
-                <img
-                  *ngIf="cast.profile_path == null"
-                  src="https://mcvt-comet-37.fra1.cdn.digitaloceanspaces.com//previews/40042/preview_40042.jpg"
-                  alt=""
-                  class="card-image-poster"
-                />
 
-                <div class="card-footer">
-                  <p>{{ cast.original_name }}</p>
+                  <div class="card-footer">
+                    <p>{{ cast.original_name }}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="container-fluid col-sm-12 col-md-3 mt-5 ps-3">
-        <div class="status">
-          <p class="fw-bold mb-0">Status</p>
-          <p>{{ movieDetail.status }}</p>
-        </div>
-        <div class="budget" *ngIf="movieDetail.budget > 0">
-          <p class="fw-bold mb-0">Budget</p>
-          <p>{{ movieDetail.budget | currency }}</p>
-        </div>
-        <div class="budget" *ngIf="movieDetail.revenue > 0">
-          <p class="fw-bold mb-0">Revenue</p>
-          <p>{{ movieDetail.revenue | currency }}</p>
+        <div class="container-fluid col-sm-12 col-md-3 mt-5 ps-3">
+          <div class="status" *ngIf="!isError">
+            <p class="fw-bold mb-0">Status</p>
+            <p>{{ movieDetail.status }}</p>
+          </div>
+          <div class="budget" *ngIf="movieDetail.budget > 0">
+            <p class="fw-bold mb-0">Budget</p>
+            <p>{{ movieDetail.budget | currency }}</p>
+          </div>
+          <div class="budget" *ngIf="movieDetail.revenue > 0">
+            <p class="fw-bold mb-0">Revenue</p>
+            <p>{{ movieDetail.revenue | currency }}</p>
+          </div>
         </div>
       </div>
     </div>
