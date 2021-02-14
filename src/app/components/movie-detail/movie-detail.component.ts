@@ -14,6 +14,9 @@ export class MovieDetailComponent implements OnInit {
   movieDetail: any = {};
   similarMovies: any[] = [];
   castList: any[] = [];
+  isError: boolean = false;
+  isMovieLoaded: boolean = false;
+
   constructor(
     public api: ApiService,
     private activatedRoute: ActivatedRoute,
@@ -21,7 +24,6 @@ export class MovieDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('CARANDO');
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.movieId = params.get('id');
 
@@ -34,10 +36,17 @@ export class MovieDetailComponent implements OnInit {
             environment.API_KEY +
             '&language=en-US'
         )
-        .subscribe((data: any) => {
-          this.movieDetail = data;
-          console.log('movie detail', this.movieDetail);
-        });
+        .subscribe(
+          (data: any) => {
+            this.movieDetail = data;
+            console.log('movie detail', this.movieDetail);
+            this.isMovieLoaded = true;
+          },
+          (err) => {
+            this.isError = true;
+            this.isMovieLoaded = true;
+          }
+        );
 
       this.api
         .getListOfMovies(
