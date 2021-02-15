@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { environment } from 'src/environments/environment';
+import { ListOfMovies } from 'src/app/shared/interfaces/listOfMovies.interface';
+import { CastList } from 'src/app/shared/interfaces/castList.interface';
 
 @Component({
   selector: 'app-movie-detail',
@@ -11,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class MovieDetailComponent implements OnInit {
   movieId: any;
   movieDetail: any = {};
-  similarMovies: any[] = [];
-  castList: any[] = [];
+  similarMovies: ListOfMovies[] = [];
+  castList: CastList[] = [];
   isError: boolean = false;
   isMovieLoaded: boolean = false;
 
@@ -25,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.movieId = params.get('id');
-
+      //Movie Detail
       this.api
         .getMovieDetail(
           environment.API_URL +
@@ -38,6 +40,7 @@ export class MovieDetailComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.movieDetail = data;
+            console.log(data);
             this.isMovieLoaded = true;
           },
           (err) => {
@@ -46,6 +49,7 @@ export class MovieDetailComponent implements OnInit {
           }
         );
 
+      //Similar Movies
       this.api
         .getMovieDetail(
           environment.API_URL +
@@ -59,6 +63,7 @@ export class MovieDetailComponent implements OnInit {
           this.similarMovies = data.results;
         });
 
+      //Cast
       this.api
         .getMovieDetail(
           environment.API_URL +
@@ -70,6 +75,7 @@ export class MovieDetailComponent implements OnInit {
         )
         .subscribe((data: any) => {
           this.castList = data.cast;
+          console.log(this.castList);
         });
     });
   }
