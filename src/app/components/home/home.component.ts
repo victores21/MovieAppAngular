@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -44,6 +45,7 @@ export class HomeComponent implements OnInit {
           '&language=en-US&page=1'
       )
       .subscribe((data: any) => {
+        console.log(data);
         this.popularMovies = data.results;
         this.isPopularMoviesloading = false;
       });
