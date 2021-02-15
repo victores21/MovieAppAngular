@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { environment } from 'src/environments/environment';
+import { ListOfMovies } from 'src/app/shared/interfaces/listOfMovies.interface';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  popularMovies: any[] = [];
-  topRatedMovies: any[] = [];
-  upcomingMovies: any[] = [];
+  popularMovies: ListOfMovies[] = [];
+  topRatedMovies: ListOfMovies[] = [];
+  upcomingMovies: ListOfMovies[] = [];
   isPopularMoviesloading: boolean = true;
   isTopRatedMoviesloading: boolean = true;
   isUpcomingMoviesloading: boolean = true;
@@ -27,8 +28,8 @@ export class HomeComponent implements OnInit {
           '&language=en-US&page=1'
       )
       .subscribe((data: any) => {
-        console.log(data);
         this.popularMovies = data.results;
+        console.log(this.popularMovies);
         this.isPopularMoviesloading = false;
       });
 
