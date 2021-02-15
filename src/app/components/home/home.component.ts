@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../../services/api.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -17,26 +16,9 @@ export class HomeComponent implements OnInit {
   isTopRatedMoviesloading: boolean = true;
   isUpcomingMoviesloading: boolean = true;
 
-  constructor(
-    public api: ApiService,
-    private activatedRoute: ActivatedRoute,
-    private spinner: NgxSpinnerService
-  ) {}
-
-  // isEverythingLoaded() {
-  //   if (
-  //     this.isPopularMoviesloading ||
-  //     this.isTopRatedMoviesloading ||
-  //     this.isUpcomingMoviesloading
-  //   ) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  constructor(public api: ApiService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // this.spinner.show();
     this.api
       .getListOfMovies(
         environment.API_URL +
