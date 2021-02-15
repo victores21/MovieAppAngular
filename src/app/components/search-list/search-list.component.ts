@@ -17,6 +17,7 @@ export class SearchListComponent implements OnInit {
   query: string = '';
   page = 1;
   searchValue: any = '';
+  loading: boolean = true;
 
   constructor(public api: ApiService, private activatedRoute: ActivatedRoute) {}
 
@@ -44,6 +45,7 @@ export class SearchListComponent implements OnInit {
           this.moviesList = data.results;
           this.page = 1;
           console.log(query);
+          this.loading = false;
         });
     } else {
       this.api
@@ -60,6 +62,7 @@ export class SearchListComponent implements OnInit {
           console.log(this.searchInfo);
           this.moviesList = data.results;
           this.page = 1;
+          this.loading = false;
         });
     }
   }
@@ -79,6 +82,7 @@ export class SearchListComponent implements OnInit {
           this.searchInfo = data;
           console.log(this.searchInfo);
           this.moviesList = data.results;
+          this.loading = false;
         });
     } else {
       this.api
@@ -95,6 +99,7 @@ export class SearchListComponent implements OnInit {
           this.searchInfo = data;
           console.log(this.searchInfo);
           this.moviesList = data.results;
+          this.loading = false;
         });
     }
   }
