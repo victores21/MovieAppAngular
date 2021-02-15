@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ApiService } from '../../services/api.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -28,7 +27,7 @@ export class MovieDetailComponent implements OnInit {
       this.movieId = params.get('id');
 
       this.api
-        .getListOfMovies(
+        .getMovieDetail(
           environment.API_URL +
             'movie/' +
             this.movieId +
@@ -39,7 +38,6 @@ export class MovieDetailComponent implements OnInit {
         .subscribe(
           (data: any) => {
             this.movieDetail = data;
-            console.log('movie detail', this.movieDetail);
             this.isMovieLoaded = true;
           },
           (err) => {
@@ -49,7 +47,7 @@ export class MovieDetailComponent implements OnInit {
         );
 
       this.api
-        .getListOfMovies(
+        .getMovieDetail(
           environment.API_URL +
             'movie/' +
             this.movieId +
@@ -62,7 +60,7 @@ export class MovieDetailComponent implements OnInit {
         });
 
       this.api
-        .getListOfMovies(
+        .getMovieDetail(
           environment.API_URL +
             'movie/' +
             this.movieId +
@@ -72,7 +70,6 @@ export class MovieDetailComponent implements OnInit {
         )
         .subscribe((data: any) => {
           this.castList = data.cast;
-          console.log('cast list', this.castList);
         });
     });
   }
